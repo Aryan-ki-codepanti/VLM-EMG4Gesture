@@ -1,0 +1,2 @@
+left_hand | object_contact | 443.364507, 243.222730, 504.242987, 312.606614 | None | None | None | None
+left_hand | object_contact | 329.433600, 262.483200, 416.422400, 322.329600 | 307.092113, 181.088019, 506.836845, 383.774594 | neither_,_held | None | None

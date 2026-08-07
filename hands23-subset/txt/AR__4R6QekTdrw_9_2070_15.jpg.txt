@@ -1,0 +1,2 @@
+right_hand | no_contact | 310.706439, 318.336977, 336.929685, 344.655738 | None | None | None | None
+right_hand | inconclusive | 407.244800, 373.413600, 423.731200, 389.901600 | None | None | None | None

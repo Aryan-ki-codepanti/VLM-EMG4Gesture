@@ -1,0 +1,2 @@
+right_hand | no_contact | 480.277296, 268.284229, 577.608319, 341.906412 | None | None | None | None
+left_hand | object_contact | 703.628800, 7.480800, 772.262400, 79.855200 | 726.779661, 25.310734, 907.851852, 394.124294 | neither_,_held | None | None
