@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Proposed Multimodal Framework</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #f4f6fa;
+            font-family: Segoe UI, Arial, sans-serif;
+        }
+
+        .wrapper {
+            width: 1500px;
+            margin: auto;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .12);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 34px;
+            margin-top: 0;
+            margin-bottom: 40px;
+            color: #17365D;
+        }
+
+        .sectionTitle {
+            font-size: 22px;
+            font-weight: 700;
+            color: #17365D;
+            margin-bottom: 18px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .box {
+
+            width: 280px;
+            min-height: 140px;
+
+            border-radius: 14px;
+
+            border: 3px solid #355C7D;
+
+            padding: 18px;
+
+            box-sizing: border-box;
+
+            text-align: center;
+
+            background: white;
+        }
+
+        .box h3 {
+            margin-top: 0;
+            color: #17365D;
+            font-size: 22px;
+        }
+
+        .box p {
+            margin: 8px 0;
+            font-size: 17px;
+        }
+
+        .arrowDown {
+
+            width: 4px;
+            height: 45px;
+            background: #444;
+            margin: auto;
+            position: relative;
+        }
+
+        .arrowDown:after {
+
+            content: "";
+
+            position: absolute;
+
+            left: -6px;
+
+            bottom: -12px;
+
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid #444;
+
+        }
+
+        .encoder {
+
+            margin-top: 15px;
+
+        }
+
+        .featureRow {
+
+            display: flex;
+
+            justify-content: space-around;
+
+            margin-top: 30px;
+
+        }
+
+        .feature {
+
+            width: 240px;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #EDF4FF;
+
+            border: 2px solid #6A8CAF;
+
+            font-weight: 600;
+
+            text-align: center;
+
+        }
+
+        .centerArrow {
+
+            width: 4px;
+
+            height: 60px;
+
+            background: #444;
+
+            margin: auto;
+
+            position: relative;
+
+        }
+
+        .centerArrow:after {
+
+            content: "";
+
+            position: absolute;
+
+            left: -6px;
+
+            bottom: -12px;
+
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid #444;
+
+        }
+
+        .fusion {
+
+            margin: auto;
+
+            width: 900px;
+
+            padding: 28px;
+
+            border-radius: 18px;
+
+            background: #FFF8E8;
+
+            border: 3px solid #C39B3A;
+
+            text-align: center;
+
+        }
+
+        .fusion h2 {
+
+            margin-top: 0;
+
+            color: #8B6508;
+
+        }
+
+        .fusion p {
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+        }
+
+        .output {
+
+            margin: auto;
+
+            margin-top: 35px;
+
+            width: 620px;
+
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background: #EEF9EE;
+
+            border: 3px solid #4D944D;
+
+            text-align: center;
+
+        }
+
+        .output h2 {
+
+            margin-top: 0;
+
+            color: #236623;
+
+        }
+
+        .small {
+
+            font-size: 16px;
+
+            color: #555;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <h1>Proposed Multimodal EEG–EMG–Vision–LLM Framework</h1>
+
+        <div class="sectionTitle">Input Modalities</div>
+
+        <div class="row">
+
+            <div>
+
+                <div class="box">
+
+                    <h3>EEG Signal</h3>
+
+                    <p>Brain Activity</p>
+
+                    <p class="small">Motor Intention</p>
+
+                </div>
+
+                <div class="arrowDown"></div>
+
+                <div class="box encoder">
+
+                    <h3>EEG Encoder</h3>
+
+                    <p>CNN / Transformer</p>
+
+                    <p>Feature Extraction</p>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="box">
+
+                    <h3>EMG Signal</h3>
+
+                    <p>Muscle Activity</p>
+
+                    <p class="small">Gesture Execution</p>
+
+                </div>
+
+                <div class="arrowDown"></div>
+
+                <div class="box encoder">
+
+                    <h3>EMG Encoder</h3>
+
+                    <p>FAN / EMGNet</p>
+
+                    <p>Feature Extraction</p>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="box">
+
+                    <h3>RGB Camera</h3>
+
+                    <p>Hand + Object</p>
+
+                    <p class="small">Scene Image</p>
+
+                </div>
+
+                <div class="arrowDown"></div>
+
+                <div class="box encoder">
+
+                    <h3>Vision-Language Model</h3>
+
+                    <p>PaliGemma</p>
+
+                    <p>Object Detection</p>
+
+                    <p>Scene Understanding</p>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="box">
+
+                    <h3>User Instruction</h3>
+
+                    <p>Optional Text</p>
+
+                    <p class="small">Task Description</p>
+
+                </div>
+
+                <div class="arrowDown"></div>
+
+                <div class="box encoder">
+
+                    <h3>Prompt Builder</h3>
+
+                    <p>Dynamic Prompt</p>
+
+                    <p>Context Generation</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="centerArrow"></div>
+
+        <div class="featureRow">
+
+            <div class="feature">
+
+                EEG Feature Vector
+
+            </div>
+
+            <div class="feature">
+
+                EMG Feature Vector
+
+            </div>
+
+            <div class="feature">
+
+                Vision Features
+
+                (Object • Intent • Grasp)
+
+            </div>
+
+            <div class="feature">
+
+                Prompt + Context
+
+            </div>
+
+        </div>
+
+        <div class="centerArrow"></div>
+
+        <div class="fusion">
+
+            <h2>Medical / General LLM Reasoning</h2>
+
+            <p>
+
+                Semantic Understanding • Prompt Reasoning • Pseudolabel Generation • Decision Validation
+
+            </p>
+
+        </div>
+
+        <div class="centerArrow"></div>
+
+        <div class="fusion">
+
+            <h2>Multimodal Fusion Layer</h2>
+
+            <p>
+
+                EEG Features &nbsp;&nbsp; + &nbsp;&nbsp;
+                EMG Features &nbsp;&nbsp; + &nbsp;&nbsp;
+                Vision Features &nbsp;&nbsp; + &nbsp;&nbsp;
+                LLM Reasoning
+
+            </p>
+
+        </div>
+
+        <div class="centerArrow"></div>
+
+        <div class="output">
+
+            <h2>Final Intention Prediction</h2>
+
+            <p>
+
+                Gesture Verification → Motor Command → Robotic Arm / Prosthetic / Rehabilitation Device
+
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
