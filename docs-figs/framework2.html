@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proposed Multimodal Framework</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: #f5f7fa;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #172033;
+            }
+
+            .container {
+                width: 1500px;
+                margin: 30px auto;
+                background: white;
+                padding: 35px 45px 40px;
+                border-radius: 18px;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            }
+
+            .title {
+                text-align: center;
+                font-size: 30px;
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+
+            .subtitle {
+                text-align: center;
+                color: #667085;
+                font-size: 15px;
+                margin-bottom: 32px;
+            }
+
+            .architecture {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+                position: relative;
+            }
+
+            .branch {
+                border: 2px solid #d9dee8;
+                border-radius: 16px;
+                padding: 20px;
+                background: #fbfcfe;
+                position: relative;
+            }
+
+            .branch-title {
+                font-size: 19px;
+                font-weight: 700;
+                margin-bottom: 17px;
+            }
+
+            .input {
+                background: #eef4ff;
+                border: 1.5px solid #b8caf0;
+            }
+
+            .model {
+                background: #f4f0ff;
+                border: 1.5px solid #c9b9ed;
+            }
+
+            .output {
+                background: #eefaf4;
+                border: 1.5px solid #b7dec9;
+            }
+
+            .box {
+                padding: 14px 17px;
+                border-radius: 11px;
+                margin: 10px 0;
+            }
+
+            .box-title {
+                font-size: 15px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+
+            .box-text {
+                font-size: 13px;
+                color: #4b5565;
+                line-height: 1.4;
+            }
+
+            .arrow {
+                text-align: center;
+                font-size: 23px;
+                color: #667085;
+                height: 25px;
+            }
+
+            .fusion {
+                grid-column: 1 / 3;
+                margin-top: 5px;
+                text-align: center;
+            }
+
+            .fusion-line {
+                width: 2px;
+                height: 28px;
+                background: #9aa4b2;
+                margin: auto;
+            }
+
+            .fusion-arrow {
+                font-size: 25px;
+                color: #667085;
+                line-height: 20px;
+            }
+
+            .fusion-box {
+                display: inline-block;
+                min-width: 650px;
+                background: #fff7e8;
+                border: 2px solid #e8c77d;
+                border-radius: 14px;
+                padding: 17px 30px;
+            }
+
+            .fusion-box .box-title {
+                font-size: 17px;
+            }
+
+            .final {
+                grid-column: 1 / 3;
+                text-align: center;
+                margin-top: 5px;
+            }
+
+            .final-line {
+                width: 2px;
+                height: 25px;
+                background: #9aa4b2;
+                margin: auto;
+            }
+
+            .final-box {
+                display: inline-block;
+                background: #eaf7f1;
+                border: 2px solid #8bc8a9;
+                border-radius: 14px;
+                padding: 17px 40px;
+                min-width: 600px;
+            }
+
+            .final-box .box-title {
+                font-size: 18px;
+            }
+
+            .tag {
+                display: inline-block;
+                padding: 3px 8px;
+                margin-left: 5px;
+                border-radius: 6px;
+                background: #e7e9ee;
+                color: #46505f;
+                font-size: 11px;
+                font-weight: 600;
+            }
+
+            .note {
+                margin-top: 25px;
+                padding: 13px 17px;
+                border-left: 4px solid #8a94a6;
+                background: #f7f8fa;
+                font-size: 12px;
+                color: #596273;
+                line-height: 1.5;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="title">
+                Proposed Multimodal Framework for Intention & Gesture
+                Recognition
+            </div>
+
+            <div class="subtitle">
+                Integration of biosignals, vision-language understanding and
+                language reasoning
+            </div>
+
+            <div class="architecture">
+                <!-- EEG -->
+                <div class="branch">
+                    <div class="branch-title">🧠 EEG Branch</div>
+
+                    <div class="box input">
+                        <div class="box-title">EEG Signal</div>
+                        <div class="box-text">EEG data provided by guide</div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <div class="box-title">EEG Encoder / Decoder</div>
+                        <div class="box-text">
+                            Feature extraction and representation learning
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">
+                        <div class="box-title">EEG Representation</div>
+                        <div class="box-text">Learned EEG feature vector</div>
+                    </div>
+                </div>
+
+                <!-- EMG -->
+                <div class="branch">
+                    <div class="branch-title">💪 EMG Branch</div>
+
+                    <div class="box input">
+                        <div class="box-title">EMG Signal</div>
+                        <div class="box-text">
+                            Existing EMG dataset / subject data
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <div class="box-title">EMG-FAN Decoder</div>
+                        <div class="box-text">
+                            Existing decoder from target research paper
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">
+                        <div class="box-title">EMG Gesture Representation</div>
+                        <div class="box-text">
+                            Predicted grasp / gesture information
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGE / VLM -->
+                <div class="branch">
+                    <div class="branch-title">👁️ Vision–Language Branch</div>
+
+                    <div class="box input">
+                        <div class="box-title">Image / Camera Input</div>
+                        <div class="box-text">
+                            Hands23 dataset / suitable visual dataset
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <div class="box-title">
+                            PaliGemma VLM
+                            <span class="tag">Proposed</span>
+                        </div>
+                        <div class="box-text">
+                            Vision encoder + language decoder
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">
+                        <div class="box-title">Visual Representation</div>
+                        <div class="box-text">
+                            Object, hand state, grasp and interaction
+                            information
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TEXT / LLM -->
+                <div class="branch">
+                    <div class="branch-title">💬 Language Branch</div>
+
+                    <div class="box input">
+                        <div class="box-title">Task / Context Prompt</div>
+                        <div class="box-text">
+                            Structured prompt based on intent, object and grasp
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <div class="box-title">
+                            Gemma <span class="tag">or</span> Med-PaLM
+                            <span class="tag">Candidate</span>
+                        </div>
+                        <div class="box-text">
+                            LLM for language-level reasoning and interpretation
+                        </div>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">
+                        <div class="box-title">
+                            Textual Intent Representation
+                        </div>
+                        <div class="box-text">
+                            Interpreted task / action / object information
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROMPTING -->
+                <div class="fusion">
+                    <div class="fusion-line"></div>
+                    <div class="fusion-arrow">↓</div>
+
+                    <div class="fusion-box">
+                        <div class="box-title">
+                            🎯 Prompting & Multimodal Reasoning Layer
+                        </div>
+
+                        <div class="box-text">
+                            Prompt structure adapted from the target paper:
+                            <br /><br />
+
+                            <b>1. Intent:</b>
+                            Is the hand strained / relaxed? Is the hand
+                            sufficiently close to the object?
+                            <br />
+
+                            <b>2. Object & Interaction:</b>
+                            What object is present? What interaction is
+                            intended?
+                            <br />
+
+                            <b>3. Grasp:</b>
+                            What grasp type is appropriate for the object?
+                            <br />
+
+                            <b>4. Context:</b>
+                            Combine visual, EMG, EEG and language information.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FINAL -->
+                <div class="final">
+                    <div class="final-line"></div>
+
+                    <div class="final-box">
+                        <div class="box-title">
+                            🔗 Multimodal Fusion & Decision Layer
+                        </div>
+
+                        <div class="box-text">
+                            EEG + EMG + Vision + Language representations
+                            <br /><br />
+                            ↓
+                            <br /><br />
+                            <b
+                                >User Intention / Gesture / Object–Action
+                                Mapping</b
+                            >
+                            <br /><br />
+                            ↓
+                            <br />
+                            Assistive-device / downstream control decision
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note">
+                <b>Proposed status:</b>
+                EEG model, final fusion strategy and LLM selection are to be
+                finalized after dataset and model feasibility analysis.
+                PaliGemma is selected as the primary VLM candidate because it is
+                the VLM used in the target paper. The EMG branch is based on the
+                existing EMG-FAN implementation.
+            </div>
+        </div>
+    </body>
+</html>

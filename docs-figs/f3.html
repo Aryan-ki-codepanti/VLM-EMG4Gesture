@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proposed Framework</title>
+
+        <style>
+            body {
+                margin: 0;
+                background: #f5f7fa;
+                font-family: Arial, sans-serif;
+                color: #172033;
+            }
+
+            .container {
+                width: 1400px;
+                margin: 30px auto;
+                background: white;
+                padding: 35px 45px;
+                border-radius: 18px;
+                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+            }
+
+            h1 {
+                text-align: center;
+                margin: 0 0 35px;
+                font-size: 29px;
+            }
+
+            .branches {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+            }
+
+            .branch {
+                border: 1.5px solid #d6dbe5;
+                border-radius: 14px;
+                padding: 18px;
+                background: #fafbfc;
+                text-align: center;
+            }
+
+            .branch h2 {
+                font-size: 18px;
+                margin: 0 0 15px;
+            }
+
+            .box {
+                padding: 13px 10px;
+                border-radius: 9px;
+                margin: 8px 0;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            .input {
+                background: #eef4ff;
+                border: 1px solid #bdcceb;
+            }
+
+            .model {
+                background: #f3efff;
+                border: 1px solid #cbbce9;
+            }
+
+            .output {
+                background: #eef9f3;
+                border: 1px solid #b9dcc8;
+            }
+
+            .arrow {
+                font-size: 21px;
+                color: #737d8c;
+            }
+
+            .prompt {
+                margin: 30px auto 0;
+                width: 75%;
+                text-align: center;
+                border: 1.5px solid #e0c47b;
+                background: #fff8e8;
+                border-radius: 13px;
+                padding: 17px;
+            }
+
+            .prompt-title {
+                font-weight: bold;
+                font-size: 17px;
+                margin-bottom: 7px;
+            }
+
+            .prompt-text {
+                font-size: 13px;
+                color: #596273;
+            }
+
+            .down {
+                text-align: center;
+                font-size: 25px;
+                color: #737d8c;
+                margin: 10px;
+            }
+
+            .fusion {
+                width: 65%;
+                margin: auto;
+                text-align: center;
+                background: #edf7f2;
+                border: 1.5px solid #9bc9b0;
+                border-radius: 14px;
+                padding: 18px;
+            }
+
+            .fusion-title {
+                font-weight: bold;
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .fusion-text {
+                font-size: 13px;
+                color: #596273;
+            }
+
+            .note {
+                margin-top: 25px;
+                text-align: center;
+                font-size: 12px;
+                color: #737d8c;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Proposed Multimodal Framework</h1>
+
+            <div class="branches">
+                <!-- EEG -->
+                <div class="branch">
+                    <h2>🧠 EEG</h2>
+
+                    <div class="box input">
+                        <b>EEG Data</b><br />
+                        From Guide
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <b>EEG Encoder</b>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">EEG Feature Vector</div>
+                </div>
+
+                <!-- EMG -->
+                <div class="branch">
+                    <h2>💪 EMG</h2>
+
+                    <div class="box input">
+                        <b>EMG Data</b><br />
+                        Existing Dataset
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <b>EMG-FAN</b>
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">Gesture Representation</div>
+                </div>
+
+                <!-- IMAGE -->
+                <div class="branch">
+                    <h2>👁️ Image</h2>
+
+                    <div class="box input">
+                        <b>Hand / Object Image</b><br />
+                        Hands23 Dataset
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <b>PaliGemma</b><br />
+                        VLM
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">Object + Grasp Information</div>
+                </div>
+
+                <!-- TEXT -->
+                <div class="branch">
+                    <h2>💬 Text</h2>
+
+                    <div class="box input">
+                        <b>Task / Context</b><br />
+                        Structured Prompt
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box model">
+                        <b>LLM</b><br />
+                        Gemma / Med-PaLM
+                    </div>
+
+                    <div class="arrow">↓</div>
+
+                    <div class="box output">Intent / Action</div>
+                </div>
+            </div>
+
+            <div class="down">↓</div>
+
+            <div class="prompt">
+                <div class="prompt-title">Prompting & Intent Understanding</div>
+
+                <div class="prompt-text">
+                    Intent → Object → Interaction → Appropriate Grasp
+                    <br />
+                    Based on the prompting strategy of the target research paper
+                </div>
+            </div>
+
+            <div class="down">↓</div>
+
+            <div class="fusion">
+                <div class="fusion-title">Multimodal Fusion & Decision</div>
+
+                <div class="fusion-text">
+                    EEG + EMG + Vision + Language → User Intention / Gesture /
+                    Action
+                </div>
+            </div>
+
+            <div class="note">
+                Proposed framework — components marked by candidate
+                models/datasets will be finalized during implementation.
+            </div>
+        </div>
+    </body>
+</html>
