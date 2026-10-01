@@ -93,13 +93,9 @@ def run_reasoning(
         model=model,
         contents=prompt,
         config={
-            "response_format": {
-                "text": {
-                    "mime_type": "application/json",
-                    "schema": REASONING_SCHEMA,
-                }
-            }
-        },
+            "response_mime_type": "application/json",
+            "response_schema": REASONING_SCHEMA,
+        }
     )
 
     return response

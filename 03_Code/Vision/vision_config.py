@@ -1,0 +1,3 @@
+VISION_MODEL = "gemini-3.1-flash-lite"
+MAX_RETRIES = 3
+RETRY_DELAY_SECONDS = 3
