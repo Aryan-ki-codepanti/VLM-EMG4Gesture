@@ -8,3 +8,12 @@
 
 old ppl, currently healthy ppl
 old -> reflexes not well so get their data
+
+
+
+// draw 
+output
+
+accuracy check todo 
+eeg fix
+other ok

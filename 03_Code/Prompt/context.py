@@ -70,3 +70,37 @@ def build_multimodal_context(
         "emg": emg_output,
         "vision": vision_output,
     }
+
+
+'''
+
+{
+  "task": {
+    "instruction": "Pick up the glass of water using a medium diameter grasp"
+  },
+  "eeg": {
+    "raw_label": "G2",
+    "semantic_label": "medium_diameter_grasp",
+    "confidence": 0.92
+  },
+  "emg": {
+    "raw_label": "G1",
+    "semantic_label": "large_diameter_grasp",
+    "confidence": 0.95
+  },
+  "vision": {
+    "hands": [
+      {
+        "handedness": "right",
+        "contact_state": "object_contact",
+        "primary_object": "glass",
+        "secondary_object": "none",
+        "hand_object_relation": "hand contacting glass",
+        "grasp_type": "medium_diameter_grasp"
+      }
+    ]
+  }
+}
+
+
+'''
