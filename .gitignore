@@ -5,3 +5,5 @@ BMIS_EEG_DATA (1).zip
 BMIS_EMG_DATA (1).zip
 BMIS_EMG_DATA/*
 BMIS_EEG_DATA/*
+env/
+BCICIV_2b_gdf*

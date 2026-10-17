@@ -1,3 +1,4 @@
+
 # ============================================================
 # Prompt Module — prompt_builder.py
 # ============================================================
@@ -9,115 +10,118 @@ from .prompt_config import (
 )
 
 
+def _as_dict(value):
+    return value if isinstance(value, dict) else {}
+
+
 def _format_vision_observation(vision):
-    """
-    Format vision output for the reasoning prompt.
+    vision = _as_dict(vision)
+    hands = vision.get("hands", []) or []
+    objects = vision.get("objects", []) or []
 
-    Supports multi-hand vision output using the 'hands' list.
-    """
+    lines = []
 
-    hands = vision.get("hands", [])
+    if objects:
+        lines.append(f"Detected objects: {objects}")
 
     if not hands:
-        return "No hand observations available."
+        lines.append("No hand observations available.")
+    else:
+        for index, hand in enumerate(hands, start=1):
+            if not isinstance(hand, dict):
+                continue
 
-    formatted_hands = []
-
-    for index, hand in enumerate(hands, start=1):
-        formatted_hands.append(
-            f"""
-Hand {index}:
-
-- Handedness: {hand.get("handedness", "unknown")}
+            lines.append(
+                f"""Hand observation {index}:
+- Handedness field: {hand.get("handedness", "unknown")}
 - Contact state: {hand.get("contact_state", "unknown")}
 - Grasp type: {hand.get("grasp_type", "unknown")}
 - Primary object: {hand.get("primary_object", "unknown")}
 - Secondary object: {hand.get("secondary_object", "unknown")}
-- Hand-object relation: {hand.get("hand_object_relation", "unknown")}
-""".strip()
-        )
+- Hand-object relation: {hand.get("hand_object_relation", "unknown")}"""
+            )
 
-    return "\n\n".join(formatted_hands)
+    return "\n\n".join(lines)
 
 
 def build_reasoning_prompt(multimodal_context):
+    context = _as_dict(multimodal_context)
 
-    task = multimodal_context["task"]
-    eeg = multimodal_context["eeg"]
-    emg = multimodal_context["emg"]
-    vision = multimodal_context["vision"]
+    task = _as_dict(context.get("task"))
+    eeg = _as_dict(context.get("eeg"))
+    emg = _as_dict(context.get("emg"))
+    vision = _as_dict(context.get("vision"))
+
+    instruction = (
+        task.get("instruction")
+        or context.get("task_instruction")
+        or "Not provided"
+    )
 
     vision_observation = _format_vision_observation(vision)
 
     prompt = f"""
 {SYSTEM_ROLE}
 
-PROMPT VERSION:
-{PROMPT_VERSION}
-
+PROMPT VERSION: {PROMPT_VERSION}
 
 ========================
-USER / TASK
+REQUESTED ACTION
 ========================
-
-{task.get("instruction", "Not provided")}
-
+{instruction}
 
 ========================
 EEG OBSERVATION
 ========================
+Task: {eeg.get("task", "unknown")}
+Predicted class: {eeg.get("predicted_class", "unknown")}
+Class ID: {eeg.get("class_id", "unknown")}
+Dataset label: {eeg.get("dataset_label", "unknown")}
+Probabilities: {eeg.get("probabilities", "not supplied")}
+Confidence: {eeg.get("confidence", "not supplied")}
+Interpretation note: {eeg.get("interpretation_note", "not supplied")}
 
-Raw label:
-{eeg.get("raw_label", "unknown")}
-
-Semantic gesture:
-{eeg.get("semantic_label", "unknown")}
-
-Confidence:
-{eeg.get("confidence", "unknown")}
-
+Treat this as left/right motor-imagery evidence, not a grasp label.
 
 ========================
 EMG OBSERVATION
 ========================
+Predicted gesture: {
+        emg.get("semantic_label")
+        or emg.get("predicted_class")
+        or emg.get("gesture")
+        or "unknown"
+    }
+Raw label: {emg.get("raw_label", "unknown")}
+Confidence: {emg.get("confidence", "not supplied")}
 
-Raw label:
-{emg.get("raw_label", "unknown")}
-
-Semantic gesture:
-{emg.get("semantic_label", "unknown")}
-
-Confidence:
-{emg.get("confidence", "unknown")}
-
+Treat this as a trained gesture-class prediction, not proof of
+object contact or successful action completion.
 
 ========================
 VISION OBSERVATION
 ========================
-
 {vision_observation}
-
 
 ========================
 REASONING TASK
 ========================
+Assess the requested action using only the observations above.
 
-Determine the likely intended action using the available
-evidence.
+For each modality, determine whether it meaningfully supports the
+request within that modality's capabilities. Do not conflate lack
+of support with evidence of contradiction.
 
-Assess whether:
-
-1. EEG supports the requested action.
-2. EMG supports the requested action.
-3. Vision supports the requested action.
-4. The modalities are mutually consistent.
-
-Do not assume that a specific EEG or EMG gesture directly
-means grasp, release, or neutral unless the available evidence
-supports that interpretation.
-
-Do not invent objects, contact, grasp types, or intentions
-that are not present in the observations.
+In particular:
+- Do not map EEG left/right motor imagery directly to grasp type.
+- Do not compare EEG class with visible handedness unless the
+  experimental mapping and handedness field semantics are validated.
+- Do not infer object contact from an EMG grasp prediction.
+- Do not infer a completed grasp from object visibility alone.
+- Treat unknown or missing observations as uncertainty.
+- Use WAIT when evidence is insufficient for the requested action.
+- Explain which evidence supports the request and what remains
+  unverified.
 
 {OUTPUT_INSTRUCTIONS}
 """

@@ -24,17 +24,29 @@ REASONING_SCHEMA = {
 
         "eeg_consistent": {
             "type": "BOOLEAN",
-            "description": "Whether the EEG observation supports the requested action.",
+            "description": (
+                "True if EEG meaningfully supports the requested action within "
+                "its capabilities; False if support is not established. False "
+                "does not necessarily mean contradictory evidence."
+            ),
         },
 
         "emg_consistent": {
             "type": "BOOLEAN",
-            "description": "Whether the EMG observation supports the requested action.",
+            "description": (
+                "True if the EMG gesture prediction supports the requested action; "
+                "False if support is not established. A compatible gesture does "
+                "not prove object contact or action completion."
+            ),
         },
 
         "vision_consistent": {
             "type": "BOOLEAN",
-            "description": "Whether the vision observation supports the requested action.",
+            "description": (
+                "True if the supplied visual observations support the requested "
+                "action; False if support is not established. Unknown or missing "
+                "evidence does not necessarily contradict the request."
+            ),
         },
 
         "overall_decision": {
